@@ -140,6 +140,26 @@ def main():
             print("خدانگهدار!")
             break
             
+        if choice == "1":
+            path = input("لطفاً مسیر پوشه را وارد کنید: ").strip()
+            if not os.path.exists(path):
+                print("مسیر وارد شده معتبر نیست!")
+                continue
+            
+            try:
+                tree = generate_tree(path)
+                print("\nساختار پوشه:")
+                print(tree)
+                
+                # ذخیره درخت در فایل
+                saved_path = save_tree_to_file(tree, path)
+                print(f"\nساختار درختی در فایل زیر ذخیره شد:")
+                print(saved_path)
+                
+            except Exception as e:
+                print(f"خطا: {str(e)}")
+                continue
+
         if choice == "2":
             target_path = input("لطفاً مسیر پوشه هدف را وارد کنید: ").strip()
             if not os.path.exists(target_path):
